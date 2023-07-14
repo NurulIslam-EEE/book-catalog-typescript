@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
 
@@ -47,6 +48,13 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logOutUser = createAsyncThunk("user/logOutUser", async () => {
+  const data = await signOut(auth);
+
+  console.log("log outttttt", data);
+  return data;
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -85,6 +93,21 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.user.email = null;
+        state.isLoading = false;
+        state.isError = true;
+        state.error = action.error.message!;
+      })
+      .addCase(logOutUser.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.error = null;
+      })
+      .addCase(logOutUser.fulfilled, (state, action) => {
+        state.user.email = null;
+        state.isLoading = false;
+      })
+      .addCase(logOutUser.rejected, (state, action) => {
         state.user.email = null;
         state.isLoading = false;
         state.isError = true;

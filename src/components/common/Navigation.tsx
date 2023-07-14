@@ -5,14 +5,24 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { logOutUser } from "../../redux/features/user/userSlice";
 
 function Navigation() {
   const { user, error } = useAppSelector((state) => state.user);
 
   const disPatch = useAppDispatch();
-  const handleLogin = () => {};
 
-  console.log("uuuuuu", user, error === "auth/email-already-in-use");
+  const navigate = useNavigate();
+  const handleLogin = (data: string) => {
+    navigate(data);
+  };
+
+  const handleLogOut = () => {
+    disPatch(logOutUser());
+  };
+
+  console.log("uuuuuu", user);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -24,11 +34,15 @@ function Navigation() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <button onClick={handleLogin}>Login</button>
-            <button>Logout</button>
-            <button>Sign Up</button>
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+
+            {!user.email && (
+              <button onClick={() => handleLogin("/login")}>Login</button>
+            )}
+            <button onClick={handleLogOut}>Logout</button>
+            <button onClick={() => handleLogin("/sign-up")}>Sign Up</button>
           </Nav>
         </Navbar.Collapse>
       </Container>
