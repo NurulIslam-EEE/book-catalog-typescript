@@ -5,6 +5,7 @@ import NotFound from "./pages/notFound/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/common/Navigation";
 import LoginForm from "./components/common/LoginForm";
+import SignInForm from "./components/common/SignInForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add-book" element={<AddBook />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/signin" element={<SignInForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
