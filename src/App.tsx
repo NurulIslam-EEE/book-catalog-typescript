@@ -6,8 +6,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/common/Navigation";
 import LoginForm from "./components/common/LoginForm";
 import SignInForm from "./components/common/SignInForm";
+import { useEffect } from "react";
+import { useAppDispatch } from "./redux/hooks";
+import { onAuthStateChanged } from "firebase/auth";
+import { setLoading, setUser } from "./redux/features/user/userSlice";
+import { auth } from "./firebase/firebase";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUser(user.email!));
+        dispatch(setLoading(false));
+      } else {
+        dispatch(setLoading(false));
+      }
+    });
+  }, [dispatch]);
   return (
     <div>
       <BrowserRouter>
@@ -16,7 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add-book" element={<AddBook />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/signin" element={<SignInForm />} />
+          <Route path="/sign-up" element={<SignInForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

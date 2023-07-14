@@ -16,11 +16,11 @@ function SignInForm() {
     formState: { errors },
   } = useForm<Inputs>();
   const dispatch = useAppDispatch();
-  const { user, isLoading } = useAppSelector((state) => state.user);
+  const { user, isLoading, error } = useAppSelector((state) => state.user);
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(createUser({ email: data.email, password: data.password }));
 
-    console.log("sign up success", user);
+    console.log("sign up success", user, error);
   };
   return (
     <div className="container">

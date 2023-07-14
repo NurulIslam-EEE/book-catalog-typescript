@@ -7,12 +7,12 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 function Navigation() {
-  const { user } = useAppSelector((state) => state.user);
+  const { user, error } = useAppSelector((state) => state.user);
 
   const disPatch = useAppDispatch();
   const handleLogin = () => {};
 
-  console.log("uuuuuu", user);
+  console.log("uuuuuu", user, error === "auth/email-already-in-use");
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -28,6 +28,7 @@ function Navigation() {
             <Nav.Link href="#action2">Link</Nav.Link>
             <button onClick={handleLogin}>Login</button>
             <button>Logout</button>
+            <button>Sign Up</button>
           </Nav>
         </Navbar.Collapse>
       </Container>
