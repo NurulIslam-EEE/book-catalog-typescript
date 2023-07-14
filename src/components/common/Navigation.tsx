@@ -4,10 +4,13 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 function Navigation() {
   const { user } = useAppSelector((state) => state.user);
+
+  const disPatch = useAppDispatch();
+  const handleLogin = () => {};
 
   console.log("uuuuuu", user);
   return (
@@ -23,6 +26,8 @@ function Navigation() {
           >
             <Nav.Link href="#action1">Home</Nav.Link>
             <Nav.Link href="#action2">Link</Nav.Link>
+            <button onClick={handleLogin}>Login</button>
+            <button>Logout</button>
           </Nav>
         </Navbar.Collapse>
       </Container>
