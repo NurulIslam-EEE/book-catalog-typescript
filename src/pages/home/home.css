@@ -1,3 +1,8 @@
 .banner-container {
   width: 100%;
 }
+
+.recent-book {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}

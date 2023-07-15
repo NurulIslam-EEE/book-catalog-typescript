@@ -11,7 +11,7 @@ function BookCard({ singleBook }: any) {
   return (
     <div className="card-container" onClick={handleNavigate}>
       <img src={singleBook?.image} alt="" width="90%" />
-      <h3>{singleBook?.title}</h3>
+      <h3 className="my-2">{singleBook?.title}</h3>
       <p>{singleBook?.author}</p>
 
       <p>{singleBook?.genre}</p>
