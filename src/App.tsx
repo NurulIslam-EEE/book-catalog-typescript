@@ -12,6 +12,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { setLoading, setUser } from "./redux/features/user/userSlice";
 import { auth } from "./firebase/firebase";
 import AllBooks from "./pages/books/AllBooks";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -32,13 +33,11 @@ function App() {
     });
   }, [dispatch]);
 
-  if (isLoading) {
-    return <p>Loading.....</p>;
-  }
   return (
     <div>
       <BrowserRouter>
         <Navigation />
+        <Toaster />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-book" element={<AddBook />} />
