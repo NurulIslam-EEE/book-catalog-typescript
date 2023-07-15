@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./addBook.css";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useAppDispatch } from "../../redux/hooks";
+import { usePostBookMutation } from "../../redux/features/books/booksApi";
+import toast, { Toaster } from "react-hot-toast";
 
 type Inputs = {
   title: string;
   author: string;
   genre: string;
   image: string;
+  publicationDate: string;
 };
 
 function AddBook() {
@@ -22,15 +26,29 @@ function AddBook() {
   //   // console.log(book);
   // };
 
+  const dispatch = useAppDispatch();
+
+  const [postBook, { isError, isSuccess, data }] = usePostBookMutation();
+
   const {
     register,
     handleSubmit,
-
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {};
+
+  const onSubmit: SubmitHandler<Inputs> = (book) => {
+    postBook(book);
+
+    toast.success("Successfully added book", {
+      position: "top-center",
+    });
+    reset();
+    // console.log("erorrr", isError, data);
+  };
   return (
     <div className="container">
+      <Toaster />
       <div className="add-book">
         <h2>Add Book</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -49,6 +67,12 @@ function AddBook() {
           <label htmlFor="">Genre</label> <br />
           <input {...register("genre", { required: true })} /> <br />
           {errors.genre && (
+            <span className="error-text">This field is required</span>
+          )}
+          <br />
+          <label htmlFor="">Publication Date</label> <br />
+          <input {...register("publicationDate", { required: true })} /> <br />
+          {errors.publicationDate && (
             <span className="error-text">This field is required</span>
           )}
           <br />

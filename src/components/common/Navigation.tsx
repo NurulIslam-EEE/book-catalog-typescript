@@ -36,7 +36,7 @@ function Navigation() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/all-book">
               All Books
             </Nav.Link>
             <Nav.Link as={Link} to="/add-book">

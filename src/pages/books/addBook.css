@@ -11,3 +11,8 @@
 .error-text {
   color: red;
 }
+
+.all-book-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
