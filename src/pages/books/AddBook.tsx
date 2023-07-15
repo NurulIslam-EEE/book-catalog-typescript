@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./addBook.css";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { usePostBookMutation } from "../../redux/features/books/booksApi";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
   title: string;
@@ -25,6 +26,15 @@ function AddBook() {
   //   setBook(changedData);
   //   // console.log(book);
   // };
+
+  const { user } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user.email) {
+      navigate("/login");
+    }
+  }, []);
 
   const dispatch = useAppDispatch();
 

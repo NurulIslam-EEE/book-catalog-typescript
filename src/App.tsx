@@ -13,6 +13,7 @@ import { setLoading, setUser } from "./redux/features/user/userSlice";
 import { auth } from "./firebase/firebase";
 import AllBooks from "./pages/books/AllBooks";
 import { Toaster } from "react-hot-toast";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 function App() {
   const dispatch = useAppDispatch();
