@@ -12,15 +12,13 @@ function SignInForm() {
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm<Inputs>();
   const dispatch = useAppDispatch();
-  const { user, isLoading, error } = useAppSelector((state) => state.user);
+  // const { user, isLoading, error } = useAppSelector((state) => state.user);
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(createUser({ email: data.email, password: data.password }));
-
-    console.log("sign up success", user, error);
   };
   return (
     <div className="container">
@@ -29,8 +27,10 @@ function SignInForm() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register("email", { required: true })} /> <br />
         {errors.email && <span>This field is required</span>}
+        <br />
         <input {...register("password", { required: true })} /> <br />
         {errors.password && <span>This field is required</span>}
+        <br />
         <input type="submit" />
       </form>
     </div>

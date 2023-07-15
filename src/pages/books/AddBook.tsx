@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import "./addBook.css";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+  title: string;
+  author: string;
+  genre: string;
+  image: string;
+};
 
 function AddBook() {
   const [book, setBook] = useState({
@@ -13,45 +22,45 @@ function AddBook() {
     // console.log(book);
   };
 
-  const handleSubmit = () => {};
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => {};
   return (
     <div className="container">
-      <h2>Add Book</h2>
-      <form action="">
-        <label htmlFor="">Image</label> <br />
-        <input
-          required
-          onChange={handleOnChange}
-          type="text"
-          name="image"
-        />{" "}
-        <br />
-        <label htmlFor="">Title</label> <br />
-        <input
-          required
-          onChange={handleOnChange}
-          type="Text"
-          name="title"
-        />{" "}
-        <br />
-        <label htmlFor="">Author</label> <br />
-        <input
-          required
-          onChange={handleOnChange}
-          type="text"
-          name="author"
-        />{" "}
-        <br />
-        <label htmlFor="">Genre</label> <br />
-        <input
-          required
-          onChange={handleOnChange}
-          type="text"
-          name="genre"
-        />{" "}
-        <br />
-        <button>Submit</button>
-      </form>
+      <div className="add-book">
+        <h2>Add Book</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="">Title</label> <br />
+          <input {...register("title", { required: true })} /> <br />
+          {errors.title && (
+            <span className="error-text">This field is required</span>
+          )}
+          <br />
+          <label htmlFor="">Author</label> <br />
+          <input {...register("author", { required: true })} /> <br />
+          {errors.author && (
+            <span className="error-text">This field is required</span>
+          )}
+          <br />
+          <label htmlFor="">Genre</label> <br />
+          <input {...register("genre", { required: true })} /> <br />
+          {errors.genre && (
+            <span className="error-text">This field is required</span>
+          )}
+          <br />
+          <label htmlFor="">Image</label> <br />
+          <input {...register("image", { required: true })} /> <br />
+          {errors.image && (
+            <span className="error-text">This field is required</span>
+          )}
+          <br />
+          <input type="submit" />
+        </form>
+      </div>
     </div>
   );
 }

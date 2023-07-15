@@ -1,9 +1,8 @@
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
+
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Link, useNavigate } from "react-router-dom";
 import { logOutUser } from "../../redux/features/user/userSlice";
@@ -22,11 +21,11 @@ function Navigation() {
     disPatch(logOutUser());
   };
 
-  console.log("uuuuuu", user);
+  // console.log("uuuuuu", user);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="#">Book Mart</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -37,12 +36,31 @@ function Navigation() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/">
+              All Books
+            </Nav.Link>
+            <Nav.Link as={Link} to="/add-book">
+              Add Book
+            </Nav.Link>
 
-            {!user.email && (
-              <button onClick={() => handleLogin("/login")}>Login</button>
+            {!user?.email && (
+              <button className="btn-all" onClick={() => handleLogin("/login")}>
+                Login
+              </button>
             )}
-            <button onClick={handleLogOut}>Logout</button>
-            <button onClick={() => handleLogin("/sign-up")}>Sign Up</button>
+            {user?.email && (
+              <button className="btn-all" onClick={handleLogOut}>
+                Logout
+              </button>
+            )}
+            {!user?.email && (
+              <button
+                className="btn-all"
+                onClick={() => handleLogin("/sign-up")}
+              >
+                Sign Up
+              </button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
