@@ -1,0 +1,8 @@
+.footer {
+  background-color: #1d1f24;
+  padding: 20px 0;
+}
+.footer p,
+.footer h5 {
+  color: #999;
+}

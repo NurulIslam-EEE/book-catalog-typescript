@@ -1,10 +1,9 @@
-import React from "react";
-import Banner from "../../components/common/Banner";
 import "./home.css";
 import { useAppSelector } from "../../redux/hooks";
 import { useGetBooksQuery } from "../../redux/features/books/booksApi";
 import Spinner from "react-bootstrap/Spinner";
 import BookCard from "../../components/common/BookCard";
+import Banner from "../../components/home/Banner";
 
 function Home() {
   const { data, error, isLoading } = useGetBooksQuery(undefined);

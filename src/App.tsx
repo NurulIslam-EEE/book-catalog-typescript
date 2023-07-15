@@ -15,6 +15,7 @@ import AllBooks from "./pages/books/AllBooks";
 import { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import BookDetails from "./pages/books/BookDetails";
+import Footer from "./components/common/Footer";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,6 +53,7 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

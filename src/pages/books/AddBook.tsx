@@ -34,7 +34,7 @@ function AddBook() {
     if (!user.email) {
       navigate("/login");
     }
-  }, []);
+  }, [user?.email, navigate]);
 
   const dispatch = useAppDispatch();
 
