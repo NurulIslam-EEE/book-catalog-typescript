@@ -3,7 +3,11 @@
 
   width: 100%;
   height: fit-content;
+  cursor: pointer;
   /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+}
+.card-container:hover {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .card-container h3 {

@@ -39,9 +39,11 @@ function Navigation() {
             <Nav.Link as={Link} to="/all-book">
               All Books
             </Nav.Link>
-            <Nav.Link as={Link} to="/add-book">
-              Add Book
-            </Nav.Link>
+            {user?.email && (
+              <Nav.Link as={Link} to="/add-book">
+                Add Book
+              </Nav.Link>
+            )}
 
             {!user?.email && (
               <button className="btn-all" onClick={() => handleLogin("/login")}>

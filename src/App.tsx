@@ -14,6 +14,7 @@ import { auth } from "./firebase/firebase";
 import AllBooks from "./pages/books/AllBooks";
 import { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./routes/PrivateRoutes";
+import BookDetails from "./pages/books/BookDetails";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -41,11 +42,13 @@ function App() {
         <Toaster />
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/add-book" element={<AddBook />} />
           <Route path="/all-book" element={<AllBooks />} />
 
           <Route path="/login" element={<LoginForm />} />
           <Route path="/sign-up" element={<SignInForm />} />
+          <Route path="/:name" element={<BookDetails />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
