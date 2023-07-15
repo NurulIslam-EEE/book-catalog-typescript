@@ -10,22 +10,22 @@ type Inputs = {
 };
 
 function AddBook() {
-  const [book, setBook] = useState({
-    title: "",
-    image: "",
-    author: "",
-    genre: "",
-  });
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const changedData = { ...book, [e.target.name]: e.target.value };
-    setBook(changedData);
-    // console.log(book);
-  };
+  // const [book, setBook] = useState({
+  //   title: "",
+  //   image: "",
+  //   author: "",
+  //   genre: "",
+  // });
+  // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const changedData = { ...book, [e.target.name]: e.target.value };
+  //   setBook(changedData);
+  //   // console.log(book);
+  // };
 
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {};

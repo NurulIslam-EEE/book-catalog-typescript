@@ -7,13 +7,18 @@ import Navigation from "./components/common/Navigation";
 import LoginForm from "./components/common/LoginForm";
 import SignInForm from "./components/common/SignInForm";
 import { useEffect } from "react";
-import { useAppDispatch } from "./redux/hooks";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { onAuthStateChanged } from "firebase/auth";
 import { setLoading, setUser } from "./redux/features/user/userSlice";
 import { auth } from "./firebase/firebase";
+import AllBooks from "./pages/books/AllBooks";
 
 function App() {
   const dispatch = useAppDispatch();
+
+  const { user, isLoading } = useAppSelector((state) => state.user);
+
+  console.log("appppp", user, isLoading);
 
   useEffect(() => {
     dispatch(setLoading(true));
@@ -26,6 +31,10 @@ function App() {
       }
     });
   }, [dispatch]);
+
+  if (isLoading) {
+    return <p>Loading.....</p>;
+  }
   return (
     <div>
       <BrowserRouter>
@@ -33,8 +42,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-book" element={<AddBook />} />
+          <Route path="/all-book" element={<AllBooks />} />
+
           <Route path="/login" element={<LoginForm />} />
           <Route path="/sign-up" element={<SignInForm />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
