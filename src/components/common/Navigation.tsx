@@ -44,6 +44,11 @@ function Navigation() {
                 Add Book
               </Nav.Link>
             )}
+            {user?.email && (
+              <Nav.Link as={Link} to="/wish-lists">
+                Wish list
+              </Nav.Link>
+            )}
 
             {!user?.email && (
               <button className="btn-all" onClick={() => handleLogin("/login")}>

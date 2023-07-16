@@ -1,3 +1,15 @@
+/* all bok */
+
+.search-bar {
+  max-width: 800px;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.search-bar input {
+  width: calc(100% - 100px);
+}
+
 .add-book {
   max-width: 500px;
   width: 100%;
