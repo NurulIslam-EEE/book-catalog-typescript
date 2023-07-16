@@ -22,7 +22,7 @@ function Home() {
           </div>
         ) : (
           <div className="recent-book">
-            {data?.data?.map((da: any) => {
+            {data?.data?.slice(0, 10).map((da: any) => {
               return <BookCard singleBook={da} />;
             })}
           </div>
