@@ -69,36 +69,39 @@ function AllBooks() {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
-      <div className="filter my-2">
-        <h3>Filter</h3>
-        <label htmlFor="">Genre</label> <br />
-        <input
-          type="text"
-          placeholder="type to Search "
-          name="genre"
-          onChange={(e) =>
-            setFilter({ ...filter, [e.target.name]: e.target.value })
-          }
-        />
-        <br />
-        <label htmlFor="">Publication Year</label> <br />
-        <input
-          type="text"
-          placeholder="type to Search "
-          name="publicationDate"
-          onChange={(e) =>
-            setFilter({ ...filter, [e.target.name]: e.target.value })
-          }
-        />
-        <br />
-        <button className="my-2" onClick={handleFilter}>
-          Filter
-        </button>
-      </div>
-      <div className="all-book-container">
-        {allData?.map((da: any) => {
-          return <BookCard singleBook={da} />;
-        })}
+
+      <div className="d-flex">
+        <div className="filter my-2 pe-2">
+          <h3>Filter</h3>
+          <label htmlFor="">Genre</label> <br />
+          <input
+            type="text"
+            placeholder="type to Search "
+            name="genre"
+            onChange={(e) =>
+              setFilter({ ...filter, [e.target.name]: e.target.value })
+            }
+          />
+          <br />
+          <label htmlFor="">Publication Year</label> <br />
+          <input
+            type="text"
+            placeholder="type to Search "
+            name="publicationDate"
+            onChange={(e) =>
+              setFilter({ ...filter, [e.target.name]: e.target.value })
+            }
+          />
+          <br />
+          <button className="my-2" onClick={handleFilter}>
+            Filter
+          </button>
+        </div>
+        <div className="all-book-container">
+          {allData?.map((da: any) => {
+            return <BookCard singleBook={da} />;
+          })}
+        </div>
       </div>
     </div>
   );
