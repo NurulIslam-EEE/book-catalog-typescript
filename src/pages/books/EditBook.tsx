@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState, FormEvent } from "react";
+import { toast } from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUpdateBookMutation } from "../../redux/features/books/booksApi";
 
 function EditBook() {
   const { state } = useLocation();
 
+  const navigate = useNavigate();
+
   const [bookData, setBookData] = useState({
+    _id: "",
     title: "",
     author: "",
     genre: "",
@@ -17,8 +23,10 @@ function EditBook() {
   useEffect(() => {
     if (state) {
       setBookData(state);
+    } else {
+      navigate("/");
     }
-  }, [state]);
+  }, [state, navigate]);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updateBook = { ...bookData, [e.target.name]: e.target.value };
@@ -29,12 +37,41 @@ function EditBook() {
     setUpdatedData(updatedValue);
   };
 
+  const [updateBook, { error }] = useUpdateBookMutation();
+
+  const handleUpdate = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    updateBook({ id: bookData?._id, data: updatedData });
+
+    if (error) {
+      return;
+    }
+
+    toast.success("Successfully updated data");
+    navigate("/");
+    // try {
+    //   const result = await axios.patch(
+    //     `https://cooperative-jay-purse.cyclic.app/api/v1/books/update/${bookData?._id}`,
+    //     updatedData
+    //   );
+
+    //   if (result?.data?.status === "success") {
+    //     toast.success("Successfully updated data");
+    //     navigate("/");
+    //   }
+
+    //   console.log("uuuuu", result);
+    // } catch (error) {
+    //   toast.error("Failed to updated");
+    // }
+  };
+
   console.log("", updatedData, bookData);
   return (
     <div className="container py-5">
       <div className="edit-book">
         <h3>Edit {bookData?.title}</h3>
-        <form action="">
+        <form action="" onSubmit={handleUpdate}>
           <label htmlFor="">Title</label>
           <br />
           <input

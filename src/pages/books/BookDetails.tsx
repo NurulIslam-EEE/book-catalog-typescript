@@ -3,13 +3,18 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import {
   useAddReviewMutation,
+  useDeleteBookMutation,
   useSingleBookQuery,
 } from "../../redux/features/books/booksApi";
 import { toast } from "react-hot-toast";
+import DeleteModal from "./DeleteModal";
 
 function BookDetails() {
+  const [show, setShow] = useState(false);
   const { state } = useLocation();
   const [review, setReview] = useState("");
+
+  const handleShow = () => setShow(true);
 
   const { id } = useParams();
 
@@ -48,6 +53,7 @@ function BookDetails() {
     }
     navigate("/edit-book", { state: book?.data });
   };
+  const handleDelete = () => {};
 
   // console.log("ggg", id);
   return (
@@ -85,11 +91,13 @@ function BookDetails() {
           <button
             className="delete"
             disabled={book?.data?.addedBy?.email !== user?.email}
+            onClick={handleShow}
           >
             Delete
           </button>
         </div>
       </div>
+      <DeleteModal show={show} setShow={setShow} id={book?.data?._id} />
     </div>
   );
 }
