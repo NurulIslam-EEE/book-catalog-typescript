@@ -7,6 +7,7 @@ function Footer() {
       <div className="container">
         <div className="d-md-flex">
           <div className="clo1 w-25 me-3">
+            <h5>Book Mart</h5>
             <p>
               Book mart is a leading book shop in Bangladesh. We offer thousands
               of islamic, general and academic books at a discounted price. We
@@ -16,15 +17,15 @@ function Footer() {
           </div>
           <div className="clo1 me-3">
             <h5>Popular</h5>
-            <p>জেনারেল ও অ্যাকাডেমিক বইড.</p>
-            <p> খোন্দকার আব্দুল্লাহ জাহাঙ্গীর এর বই</p>
+            <p>জেনারেল ও অ্যাকাডেমিক বই</p>
+            <p>ড. খোন্দকার আব্দুল্লাহ জাহাঙ্গীর এর বই</p>
             <p>আরিফ আজাদ এর বই</p>
           </div>
 
           <div className="col3">
-            <p>Contact</p>
+            <h5>Contact</h5>
             <p>Head Office: House 310, Road 21 Mohakhali DOHS, Dhaka-1206</p>
-            <p>Phone: 017-9992-5050 096-7877-1365</p>
+            <p>Phone: 019-9992-505, 0666-7877-136</p>
           </div>
         </div>
       </div>

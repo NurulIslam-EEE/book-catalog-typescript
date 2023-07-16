@@ -6,6 +6,10 @@ const booksAPi = api.injectEndpoints({
       query: () => ({ url: `books` }),
       providesTags: ["books"],
     }),
+    getWishlists: build.query({
+      query: (email) => ({ url: `users/${email}` }),
+      providesTags: ["books"],
+    }),
     postBook: build.mutation({
       query: (data) => ({
         url: `books`,
@@ -51,4 +55,5 @@ export const {
   useSingleBookQuery,
   useUpdateBookMutation,
   useDeleteBookMutation,
+  useGetWishlistsQuery,
 } = booksAPi;

@@ -8,6 +8,7 @@ import {
 } from "../../redux/features/books/booksApi";
 import { toast } from "react-hot-toast";
 import DeleteModal from "./DeleteModal";
+import axios from "axios";
 
 function BookDetails() {
   const [show, setShow] = useState(false);
@@ -53,7 +54,24 @@ function BookDetails() {
     }
     navigate("/edit-book", { state: book?.data });
   };
-  const handleDelete = () => {};
+  const handleAddToWishlist = async () => {
+    if (!user.email) {
+      toast.error("Please login");
+      return;
+    }
+    try {
+      const result = await axios.patch(
+        `https://cooperative-jay-purse.cyclic.app/api/v1/users/${user?.email}`,
+        {
+          id: book?.data?._id,
+        }
+      );
+      if (result.data.status === "success") {
+        toast.success("Successfully ad to wish list");
+      }
+      console.log("wish", result);
+    } catch (error) {}
+  };
 
   // console.log("ggg", id);
   return (
@@ -81,6 +99,15 @@ function BookDetails() {
             />
             <button onClick={handleAddReview}>Add</button>
           </div>
+
+          {/* wish list  */}
+          <div className="d-flex">
+            <button className="mt-2" onClick={handleAddToWishlist}>
+              Add to wish list
+            </button>
+            <button className="mt-2 ms-2">Add to read</button>
+          </div>
+
           <button
             className="edit"
             disabled={book?.data?.addedBy?.email !== user?.email}
