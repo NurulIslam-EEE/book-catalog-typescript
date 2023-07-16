@@ -30,7 +30,7 @@ function Navigation() {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="ms-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
+            style={{ maxHeight: "200px" }}
             navbarScroll
           >
             <Nav.Link as={Link} to="/">

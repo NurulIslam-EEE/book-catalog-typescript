@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="d-flex">
+        <div className="d-md-flex">
           <div className="clo1 w-25 me-3">
             <p>
               Book mart is a leading book shop in Bangladesh. We offer thousands

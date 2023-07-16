@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import BookDetails from "./pages/books/BookDetails";
 import Footer from "./components/common/Footer";
+import EditBook from "./pages/books/EditBook";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -46,6 +47,7 @@ function App() {
 
           <Route path="/add-book" element={<AddBook />} />
           <Route path="/all-book" element={<AllBooks />} />
+          <Route path="/edit-book" element={<EditBook />} />
 
           <Route path="/login" element={<LoginForm />} />
           <Route path="/sign-up" element={<SignInForm />} />

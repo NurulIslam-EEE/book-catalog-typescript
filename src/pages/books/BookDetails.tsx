@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import {
   useAddReviewMutation,
@@ -39,9 +39,19 @@ function BookDetails() {
     setReview("");
   };
 
-  console.log("ggg", id);
+  const navigate = useNavigate();
+
+  const handleNavigateToEdit = () => {
+    if (book?.data?.addedBy?.email !== user?.email) {
+      toast.error("You are nit authorized");
+      return;
+    }
+    navigate("/edit-book", { state: book?.data });
+  };
+
+  // console.log("ggg", id);
   return (
-    <div className="container">
+    <div className="container py-5">
       <div className="d-flex">
         <div className="book-img w-25 ">
           <img src={book?.data?.image} alt="" width="100%" />
@@ -65,10 +75,17 @@ function BookDetails() {
             />
             <button onClick={handleAddReview}>Add</button>
           </div>
-          <button disabled={book?.data?.addedBy?.email !== user?.email}>
+          <button
+            className="edit"
+            disabled={book?.data?.addedBy?.email !== user?.email}
+            onClick={handleNavigateToEdit}
+          >
             Edit
           </button>
-          <button disabled={book?.data?.addedBy?.email !== user?.email}>
+          <button
+            className="delete"
+            disabled={book?.data?.addedBy?.email !== user?.email}
+          >
             Delete
           </button>
         </div>
