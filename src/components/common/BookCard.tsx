@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function BookCard({ singleBook }: any) {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate(`/${singleBook.title}`, { state: singleBook });
+    navigate(`/${singleBook._id}`, { state: singleBook });
   };
   return (
     <div className="card-container" onClick={handleNavigate}>

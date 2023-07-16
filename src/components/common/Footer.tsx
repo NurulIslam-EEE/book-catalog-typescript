@@ -8,7 +8,7 @@ function Footer() {
         <div className="d-flex">
           <div className="clo1 w-25 me-3">
             <p>
-              Wafilife is a leading book shop in Bangladesh. We offer thousands
+              Book mart is a leading book shop in Bangladesh. We offer thousands
               of islamic, general and academic books at a discounted price. We
               provide good packaging with low shipping cost all over the
               Bangladesh.
@@ -23,10 +23,8 @@ function Footer() {
 
           <div className="col3">
             <p>Contact</p>
-            <p>
-              Head Office: House 310, Road 21 Mohakhali DOHS, Dhaka-1206 Phone:
-              017-9992-5050 096-7877-1365
-            </p>
+            <p>Head Office: House 310, Road 21 Mohakhali DOHS, Dhaka-1206</p>
+            <p>Phone: 017-9992-5050 096-7877-1365</p>
           </div>
         </div>
       </div>

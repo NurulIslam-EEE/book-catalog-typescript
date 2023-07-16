@@ -48,7 +48,8 @@ function AddBook() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (book) => {
-    postBook(book);
+    const updatedData = { ...book, addedBy: { email: user?.email } };
+    postBook(updatedData);
 
     toast.success("Successfully added book", {
       position: "top-center",

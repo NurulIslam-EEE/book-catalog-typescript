@@ -49,7 +49,7 @@ function App() {
 
           <Route path="/login" element={<LoginForm />} />
           <Route path="/sign-up" element={<SignInForm />} />
-          <Route path="/:name" element={<BookDetails />} />
+          <Route path="/:id" element={<BookDetails />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
